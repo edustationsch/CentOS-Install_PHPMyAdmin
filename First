@@ -1,0 +1,36 @@
+1. sudo yum install epel-release
+2. sudo yum install phpmyadmin
+3. nano /etc/httpd/conf.d/phpMyAdmin.conf
+- 127.0.0.1 menggunakan alamat IP server Anda. 
+- tambahkan Require all granted
+
+4. (KONEKSI DENGAN DATABASE HOST LUAR)
+
+- sudo nano /etc/phpmyadmin/config.inc.php
+
+*****
+$cfg['Servers'][$i]['host'] = 'alamat ip server database';
+
+
+
+
+5. (EDIT Batas Ukuran perubahan Upload / Impor di phpMyAdmin)
+
+- nano /etc/php.ini
+
+**EDIT**
+- max_execution_time = 60 ; Maximum execution time of each script, in seconds (def. 30) 
+- max_input_time = 90 ; Maximum amount of time each script may spend parsing request data (def. 60) 
+- memory_limit = 128M ; Maximum amount of memory a script may consume (def. 128mb) 
+- upload_max_filesize = 200M ; Maximum allowed size for uploaded files. (def. 2mb) 
+- post_max_size = 200M ; Maximum size of POST data that PHP will accept
+
+---------
+
+max_execution_time = 5000
+max_input_time = 5000
+memory_limit = 1000M
+post_max_size = 750M
+upload_max_filesize = 750M
+
+6. systemctl restart httpd
